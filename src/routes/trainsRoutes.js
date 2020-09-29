@@ -7,6 +7,10 @@ const trainsController = require("../controllers/trainsController");
 router.get("/", trainsController.getTrains);
 router.get("/:stationId", trainsController.getByStationId);
 
+// get all trains
 router.get("/", trainsController.getAllTrains);
+
+// update maintenance property with trainid
+router.put("/:id", trainsController.setMaintenance);
 
 module.exports = router;

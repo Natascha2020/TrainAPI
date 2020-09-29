@@ -25,6 +25,19 @@ const trainsController = {
       res.sendStatus(400).send("Please query valid id");
     }
   },
+  setMaintenance: async (req, res) => {
+    const { id } = req.params;
+    const { maintenance } = req.body;
+    const queryString = `Update * from "trains" SET maintence={$maintenance? "false":"true"}{$maintenance===false? "true":"false"} WHERE id={$id};`;
+    try {
+      const { rows } = await database.query(queryString);
+      res.json(rows);
+    } catch {
+      error;
+      console.error(error);
+      res.sendStatus(404);
+    }
+  },
 };
 
 module.exports = trainsController;
