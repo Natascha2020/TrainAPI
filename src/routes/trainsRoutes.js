@@ -7,4 +7,6 @@ const trainsController = require("../controllers/trainsController");
 router.get("/", trainsController.getTrains);
 router.get("/:stationId", trainsController.getByStationId);
 
+router.get("/", trainsController.getAllTrains);
+
 module.exports = router;
