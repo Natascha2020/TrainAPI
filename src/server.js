@@ -3,11 +3,13 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
-
 const stopsRoutes = require("./routes/stopsRoutes");
 const trainsRoutes = require("./routes/trainsRoutes");
+
+// Middlewares to format json response
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Prevent cors-error from local client-server requests
 app.use(cors());
