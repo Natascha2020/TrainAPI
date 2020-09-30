@@ -7,7 +7,7 @@ const app = express();
 const stopsRoutes = require("./routes/stopsRoutes");
 const trainsRoutes = require("./routes/trainsRoutes");
 
-// Middlewares to format json response
+// Middlewares to format request/response
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

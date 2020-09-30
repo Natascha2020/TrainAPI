@@ -1,4 +1,4 @@
-const database = require("../dbConfig.js");
+const database = require("../dbconfig.js");
 
 const stopsController = {
   updateStation: async (req, res, next) => {

@@ -1,18 +1,7 @@
-const database = require("../dbConfig.js");
+const database = require("../dbconfig.js");
+const paramsCheck = require("../helpers/paramsCheck.js");
 
 const trainsController = {
-  getByStationId: async (req, res, next) => {
-    console.log("Start of `getByStationId`");
-    // const { stationId } = req.params;
-    // const queryString =`SELECT trains.id from trains LEFTJOIN station on station.id=trains.station-id"
-    //   try {
-    //   const { rows } = await database.query(queryString);
-    //   res.json(rows);
-    // } catch(error) {
-    //   console.error(error);
-    //   res.sendStatus(400).send("Please query valid id");
-    // }
-  },
   getAllTrains: async (req, res, next) => {
     console.log("Start of `getAllTrains`");
     const queryString = `SELECT * from trains ORDER BY id ASC;`;
@@ -21,22 +10,27 @@ const trainsController = {
       res.json(rows);
     } catch (error) {
       console.error(error);
-      res.sendStatus(400).send("");
+      res.sendStatus(400).send("Please query valid id");
     }
   },
-  setMaintenance: async (req, res, next) => {
+   setMaintenance: async (req, res, next) => {
     const { id } = req.params;
     const { maintenance } = req.body;
-    const queryString = `Update * from "trains" SET maintence={$maintenance? "false":"true"}{$maintenance===false? "true":"false"} WHERE id={$id};`;
+    const queryString = `Update "trains" SET maintenance='${maintenance}' WHERE id=${id} RETURNING*;`;
+    const validParams = paramsCheck([maintenance]);
+    if (!validParams) {
+      res.sendStatus(400).send("Please insert valid data for parameters");
+      return;
+    }
     try {
       const { rows } = await database.query(queryString);
-      res.json(rows);
+      next();
     } catch (error) {
       console.error(error);
       res.sendStatus(404);
     }
   },
-  setStation: async (req, res, next) => {
+ setStation: async (req, res, next) => {
     console.log("Start of `setStation`");
     const { id } = req.params;
     const { stopid } = req.body;
@@ -47,6 +41,17 @@ const trainsController = {
     } catch (error) {
       console.error(error);
       res.sendStatus(404);
+    }
+  },
+ getTrainsbyId: async (req, res) => {
+    const { id } = req.params;
+    const queryString = `SELECT * from trains WHERE id=${id};`;
+    try {
+      const { rows } = await database.query(queryString);
+      res.json(rows);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(400).send("Please query valid id");
     }
   },
 };
