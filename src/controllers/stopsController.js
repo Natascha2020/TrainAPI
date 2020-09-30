@@ -13,6 +13,18 @@ const stopsController = {
           res.sendStatus(400).send("Please query valid id");
         } */
   },
+  getStops: async (req, res) => {
+    console.log("Start of `getStops`");
+    // const queryString = `SELECT * from stops SET VALUES`;
+    // try {
+    //   const { rows } = await database.query(queryString);
+    //   res.json(rows);
+    // } catch {
+    //   error;
+    //   console.error(error);
+    //   res.sendStatus(404).send("");
+    // }
+  },
 };
 
 module.exports = stopsController;
