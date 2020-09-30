@@ -13,7 +13,7 @@ const trainsController = {
       res.sendStatus(400).send("Please query valid id");
     }
   },
-   setMaintenance: async (req, res, next) => {
+  setMaintenance: async (req, res, next) => {
     const { id } = req.params;
     const { maintenance } = req.body;
     const queryString = `Update "trains" SET maintenance='${maintenance}' WHERE id=${id} RETURNING*;`;
@@ -30,7 +30,7 @@ const trainsController = {
       res.sendStatus(404);
     }
   },
- setStation: async (req, res, next) => {
+  setStation: async (req, res, next) => {
     console.log("Start of `setStation`");
     const { id } = req.params;
     const { stopid } = req.body;
@@ -43,7 +43,7 @@ const trainsController = {
       res.sendStatus(404);
     }
   },
- getTrainsbyId: async (req, res) => {
+  getTrainsbyId: async (req, res) => {
     const { id } = req.params;
     const queryString = `SELECT * from trains WHERE id=${id};`;
     try {
