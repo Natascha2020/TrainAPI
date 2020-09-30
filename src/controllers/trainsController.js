@@ -17,11 +17,11 @@ const trainsController = {
     const { id } = req.params;
     const { maintenance } = req.body;
     const queryString = `Update "trains" SET maintenance='${maintenance}' WHERE id=${id} RETURNING*;`;
-    const validParams = paramsCheck([maintenance]);
+    /*  const validParams = paramsCheck([maintenance]);
     if (!validParams) {
       res.sendStatus(400).send("Please insert valid data for parameters");
       return;
-    }
+    } */
     try {
       await database.query(queryString);
       next();
