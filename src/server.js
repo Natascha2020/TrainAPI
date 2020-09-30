@@ -3,13 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
-
 const stopsRoutes = require("./routes/stopsRoutes");
 const trainsRoutes = require("./routes/trainsRoutes");
 
-// parsing body-text as url encoded data received from client (test via Postman or similar)
+// Middlewares to format request/response
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
