@@ -23,7 +23,7 @@ const trainsController = {
       return;
     }
     try {
-      const { rows } = await database.query(queryString);
+      await database.query(queryString);
       next();
     } catch (error) {
       console.error(error);

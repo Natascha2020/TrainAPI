@@ -1,18 +1,6 @@
 const database = require("../dbconfig.js");
 
 const stopsController = {
-  updateStation: async (req, res, next) => {
-    // update station-id of a specific train
-    console.log(test);
-    //const queryString =`SELECT * from "trains" SET VALUES`
-    //  try {
-    //   const { rows } = await database.query(queryString);
-    //   res.json(rows);
-    // } catch(error) {
-    //   console.error(error);
-    //   res.sendStatus(400).send("Please query valid id");
-    // }
-  },
   getStops: async (req, res) => {
     console.log("Start of `getStops`");
     const queryString = `SELECT * from stops ORDER BY id ASC;`;
@@ -21,7 +9,19 @@ const stopsController = {
       res.json(rows);
     } catch (error) {
       console.error(error);
-      res.sendStatus(400).send("");
+      res.sendStatus(400);
+    }
+  },
+  getTrainsByStopId: async (req, res) => {
+    const { id } = req.params;
+    const queryString = `SELECT * FROM stops LEFT JOIN trains ON trains.stopid=stops.id WHERE stops.id=${id};`;
+    console.log(queryString);
+    try {
+      const { rows } = await database.query(queryString);
+      res.json(rows);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(400);
     }
   },
 };
