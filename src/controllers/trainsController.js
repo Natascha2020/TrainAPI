@@ -2,8 +2,9 @@ const database = require("../dbconfig.js");
 const paramsCheck = require("../helpers/paramsCheck.js");
 
 const trainsController = {
-  getAllTrains: async (req, res) => {
-    const queryString = `SELECT * from trains;`;
+  getAllTrains: async (req, res, next) => {
+    console.log("Start of `getAllTrains`");
+    const queryString = `SELECT * from trains ORDER BY id ASC;`;
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
@@ -12,17 +13,15 @@ const trainsController = {
       res.sendStatus(400).send("Please query valid id");
     }
   },
-  setMaintenance: async (req, res, next) => {
+   setMaintenance: async (req, res, next) => {
+    const { id } = req.params;
+    const { maintenance } = req.body;
     const queryString = `Update "trains" SET maintenance='${maintenance}' WHERE id=${id} RETURNING*;`;
-    console.log(queryString);
-    console.log(id);
-    console.log(maintenance);
     const validParams = paramsCheck([maintenance]);
     if (!validParams) {
       res.sendStatus(400).send("Please insert valid data for parameters");
       return;
     }
-
     try {
       const { rows } = await database.query(queryString);
       next();
@@ -31,7 +30,20 @@ const trainsController = {
       res.sendStatus(404);
     }
   },
-  getTrainsbyId: async (req, res) => {
+ setStation: async (req, res, next) => {
+    console.log("Start of `setStation`");
+    const { id } = req.params;
+    const { stopid } = req.body;
+    const queryString = `Update trains SET stopid='${stopid ? stopid : ""}' WHERE id=${id};`;
+    try {
+      const { rows } = await database.query(queryString);
+      res.json(rows);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(404);
+    }
+  },
+ getTrainsbyId: async (req, res) => {
     const { id } = req.params;
     const queryString = `SELECT * from trains WHERE id=${id};`;
     try {
