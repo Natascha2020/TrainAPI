@@ -20,4 +20,4 @@ app.use("/trains", trainsRoutes);
 // Endpoints Stops Routes
 app.use("/stops", stopsRoutes);
 
-app.listen(5001, () => console.log("Server is running on port 5000"));
+app.listen(5000, () => console.log("Server is running on port 5000"));

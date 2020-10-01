@@ -1,8 +1,6 @@
 const database = require("../dbconfig.js");
 const paramsCheck = require("../helpers/paramsCheck.js");
 
-
-
 const trainsController = {
   getAllTrains: async (req, res, next) => {
     console.log("Start of `getAllTrains`");
@@ -18,7 +16,7 @@ const trainsController = {
 
   // Fetch all trains not in maintenance (getRunningTrains)
   getRunningTrains: async (req, res) => {
-  //  const { maintenance } = req.body;
+    //  const { maintenance } = req.body;
     const queryString = `SELECT * from trains WHERE maintenance='${false}';`;
     console.log(queryString);
     try {
