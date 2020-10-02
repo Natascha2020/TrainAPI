@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+const logRequest = require("./helpers/logRequests");
+
 const stopsRoutes = require("./routes/stopsRoutes");
 const trainsRoutes = require("./routes/trainsRoutes");
 
@@ -13,6 +15,9 @@ app.use(bodyParser.json());
 
 // Prevent cors-error from local client-server requests
 app.use(cors());
+
+//log requests
+app.use(logRequest);
 
 // Endpoints Train Routes
 app.use("/trains", trainsRoutes);
