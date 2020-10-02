@@ -1,8 +1,9 @@
 const fs = require("fs");
 
-let logRequest = (req, res, next) => {
-  let currentDate = new Date();
-  let formattedDate =
+const logRequest = (req, res, next) => {
+  // accessing and formatting current time stamp
+  const currentDate = new Date();
+  const formattedDate =
     currentDate.getFullYear() +
     "-" +
     (currentDate.getMonth() + 1) +
@@ -14,22 +15,24 @@ let logRequest = (req, res, next) => {
     currentDate.getMinutes() +
     ":" +
     currentDate.getSeconds();
+
   // accessing method, url and statuscode from request object
-  let method = req.method;
-  let url = req.url;
-  let status = res.statusCode;
+  const method = req.method;
+  const url = req.url;
+  const status = res.statusCode;
+
   // acessing high-resolution real time in [seconds, nanoseconds]
   // getting request process duration in milliseconds
-  let logTime = process.hrtime();
+  // processTime as additional parameter, result of previous call to diff with current time
+  const logTime = process.hrtime();
   const getRequestDuration = (processTime) => {
-    //processTime as additional parameter, result of previous call to diff with current time
     const diff = process.hrtime(processTime);
     return (diff[0] * 1e9 + diff[1]) / 1e6;
   };
-  let processTime = getRequestDuration(logTime);
+  const processTime = getRequestDuration(logTime);
 
-  let currentLog = `[Date: ${formattedDate}] [Method: ${method}] [Url: ${url}] [Status: ${status}] [Duration: ${processTime} ms]`;
-  //create-send to file the current request with log-data (date, method, url, statuscode)
+  // create-send to file the current request with log-data (date, method, url, statuscode)
+  const currentLog = `[Date: ${formattedDate}] [Method: ${method}] [Url: ${url}] [Status: ${status}] [Duration: ${processTime} ms]`;
   fs.appendFile("logRequests.txt", currentLog + "\n", (error) => {
     if (error) {
       res.sendStatus(500);
