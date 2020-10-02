@@ -1,5 +1,5 @@
 const database = require("../dbconfig.js");
-const paramsCheck = require("../helpers/paramsCheck.js");
+/* const paramsCheck = require("../helpers/paramsCheck.js"); */
 
 const trainsController = {
   getAllTrains: async (req, res, next) => {

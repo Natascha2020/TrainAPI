@@ -1,4 +1,3 @@
-
 [Date: 2020-10-2 16:26:15] [Method: GET] [Url: /trains] [Status: 200] [Duration: 0.842928 ms]
 [Date: 2020-10-2 16:26:20] [Method: GET] [Url: /stops] [Status: 200] [Duration: 0.005736 ms]
 [Date: 2020-10-2 16:33:19] [Method: GET] [Url: /stops] [Status: 200] [Duration: 0.108116 ms]
@@ -21,3 +20,6 @@
 [Date: 2020-10-2 17:15:10] [Method: GET] [Url: /trains/sendtostation/3] [Status: 200] [Duration: 0.068811 ms]
 [Date: 2020-10-2 17:15:20] [Method: PUT] [Url: /trains/sendtostation/3] [Status: 200] [Duration: 0.005917 ms]
 [Date: 2020-10-2 17:15:28] [Method: GET] [Url: /trains/] [Status: 200] [Duration: 0.004194 ms]
+[Date: 2020-10-2 17:28:37] [Method: GET] [Url: /trains/] [Status: 200] [Duration: 0.035984 ms]
+[Date: 2020-10-2 17:43:30] [Method: GET] [Url: /trains/] [Status: 200] [Duration: 0.088431 ms]
+[Date: 2020-10-2 18:20:18] [Method: GET] [Url: /stops] [Status: 200] [Duration: 0.091545 ms]
