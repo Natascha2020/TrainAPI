@@ -19,7 +19,6 @@ router.put("/sendtostation/:id", trainsController.setStation);
 // update maintenance property with trainid
 router.put("/:id", (req, res, next) => trainsController.setMaintenance(req, res, next), trainsController.getTrainsbyId);
 
-
-router.put
+router.put;
 
 module.exports = router;
