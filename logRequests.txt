@@ -2,7 +2,6 @@
 [Date: 2020-10-2 16:26:15] [Method: GET] [Url: /trains] [Status: 200] [Duration: 0.842928 ms]
 [Date: 2020-10-2 16:26:20] [Method: GET] [Url: /stops] [Status: 200] [Duration: 0.005736 ms]
 [Date: 2020-10-2 16:33:19] [Method: GET] [Url: /stops] [Status: 200] [Duration: 0.108116 ms]
-
 [Date: 2020-10-2 16:52:58] [Method: GET] [Url: /trains/4] [Status: 200] [Duration: 0.066957 ms]
 [Date: 2020-10-2 16:53:5] [Method: GET] [Url: /stops] [Status: 200] [Duration: 0.006085 ms]
 [Date: 2020-10-2 16:53:9] [Method: GET] [Url: /trains] [Status: 200] [Duration: 0.00516 ms]
