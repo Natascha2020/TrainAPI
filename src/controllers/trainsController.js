@@ -1,10 +1,19 @@
 const database = require("../dbconfig.js");
 /* const paramsCheck = require("../helpers/paramsCheck.js"); */
 
+// SELECT trains.id, trains.name, trains.length, stops.city
+//     FROM trains
+//     INNER JOIN stops ON trains.stopid =stops.id
+//     ORDER BY trains.id;
+
 const trainsController = {
   getAllTrains: async (req, res, next) => {
     console.log("Start of `getAllTrains`");
-    const queryString = `SELECT * from trains ORDER BY id ASC;`;
+    const queryString = `
+    SELECT trains.id, trains.name, trains.length, stops.city
+    FROM trains 
+    INNER JOIN stops ON trains.stopid =stops.id
+    ORDER BY trains.id;`;
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
