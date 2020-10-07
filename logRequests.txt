@@ -1,3 +1,0 @@
-[Date: 2020-10-7 17:9:47] [Method: PUT] [Url: /trains/1] [Status: 200] [Duration: 0.209034 ms]
-[Date: 2020-10-7 17:9:47] [Method: GET] [Url: /trains/] [Status: 200] [Duration: 0.006808 ms]
-[Date: 2020-10-7 17:9:47] [Method: GET] [Url: /trains/] [Status: 200] [Duration: 0.007068 ms]

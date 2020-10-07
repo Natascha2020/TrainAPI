@@ -5,7 +5,7 @@ const stopsController = {
   getStops: async (req, res) => {
     const queryString = `SELECT *
     FROM stops 
-    INNER JOIN trains ON trains.stopid=stops.id
+    FULL JOIN trains ON trains.stopid = stops.id
     ORDER BY stops.id ASC;`;
     try {
       const { rows } = await database.query(queryString);
