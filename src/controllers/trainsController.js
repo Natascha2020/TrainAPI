@@ -1,14 +1,8 @@
 const database = require("../dbconfig.js");
-/* const paramsCheck = require("../helpers/paramsCheck.js"); */
 
-// SELECT trains.id, trains.name, trains.length, stops.city
-//     FROM trains
-//     INNER JOIN stops ON trains.stopid =stops.id
-//     ORDER BY trains.id;
-
-// Fetch all trains and Left join the stops in order to use this function for other functionalities
 const trainsController = {
-  getAllTrains: async (req, res, next) => {
+  // Fetch all trains and Left join the stops in order to use this function for other functionalities
+  getAllTrains: async (req, res) => {
     const queryString = `
     SELECT *
     FROM stops
@@ -25,7 +19,6 @@ const trainsController = {
 
   // Fetch all trains not in maintenance (getRunningTrains)
   getRunningTrains: async (req, res) => {
-    //  const { maintenance } = req.body;
     const queryString = `SELECT * from trains WHERE maintenance='${false}' ORDER BY trains.id ASC;`;
     try {
       const { rows } = await database.query(queryString);
@@ -40,11 +33,6 @@ const trainsController = {
     const { id } = req.params;
     const { maintenance } = req.body;
     const queryString = `Update "trains" SET maintenance='${maintenance}' WHERE id=${id} RETURNING*;`;
-    /*  const validParams = paramsCheck([maintenance]);
-    if (!validParams) {
-      res.sendStatus(400).send("Please insert valid data for parameters");
-      return;
-    } */
     try {
       await database.query(queryString);
       next();
@@ -53,14 +41,12 @@ const trainsController = {
       res.sendStatus(404);
     }
   },
-  setStation: async (req, res, next) => {
+
+  // Updating stopid of a specific train by trains id
+  setStation: async (req, res) => {
     const { id } = req.params;
     const { stopid } = req.body;
     const queryString = `Update trains SET stopid='${stopid ? stopid : ""}' WHERE id=${id};`;
-<<<<<<< HEAD
-    // console.log(queryString);
-=======
->>>>>>> 819ed7827d91d9ef568e6a2368b9ae33b245a892
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
@@ -69,6 +55,8 @@ const trainsController = {
       res.sendStatus(404);
     }
   },
+
+  // Grabbing all trains by specific id
   getTrainsbyId: async (req, res) => {
     const { id } = req.params;
     const queryString = `SELECT * from trains WHERE id=${id};`;

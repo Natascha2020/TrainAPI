@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // Prevent cors-error from local client-server requests
 app.use(cors());
 
-//log requests
+// Middleware to log all client requests
 app.use(logRequest);
 
 // Endpoints Train Routes
