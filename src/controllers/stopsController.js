@@ -3,7 +3,6 @@ const database = require("../dbconfig.js");
 // Fetch all stop with an Inner join and use it for other functionalities
 const stopsController = {
   getStops: async (req, res) => {
-    console.log("Start of `getStops`");
     const queryString = `SELECT stops.id, stops.city, trains.name
     FROM stops 
     INNER JOIN trains ON trains.stopid=stops.id
