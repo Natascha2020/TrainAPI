@@ -13,7 +13,7 @@ const trainsController = {
     const queryString = `
     SELECT *
     FROM stops
-    LEFT JOIN trains ON trains.stopid = stops.id
+    FULL JOIN trains ON trains.stopid = stops.id
     ORDER BY trains.id`;
     try {
       const { rows } = await database.query(queryString);
