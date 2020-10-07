@@ -1,5 +1,6 @@
 const database = require("../dbconfig.js");
 
+// Fetch all stop with an Inner join and use it for other functionalities
 const stopsController = {
   getStops: async (req, res) => {
     console.log("Start of `getStops`");

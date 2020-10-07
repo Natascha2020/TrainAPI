@@ -6,6 +6,7 @@ const database = require("../dbconfig.js");
 //     INNER JOIN stops ON trains.stopid =stops.id
 //     ORDER BY trains.id;
 
+// Fetch all trains and Left join the stops in order to use this function for other functionalities
 const trainsController = {
   getAllTrains: async (req, res, next) => {
     console.log("Start of `getAllTrains`");
