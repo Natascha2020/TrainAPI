@@ -60,7 +60,7 @@ const trainsController = {
     const { id } = req.params;
     const { stopid } = req.body;
     const queryString = `Update trains SET stopid='${stopid ? stopid : ""}' WHERE id=${id};`;
-    console.log(queryString);
+    // console.log(queryString);
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);

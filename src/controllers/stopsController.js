@@ -1,12 +1,17 @@
 const database = require("../dbconfig.js");
 
+// SELECT stops.id, stops.city, trains.name
+//     FROM stops
+//     INNER JOIN trains ON trains.stopid=stops.id
+//     ORDER BY stops.id ASC
+
 // Fetch all stop with an Inner join and use it for other functionalities
 const stopsController = {
   getStops: async (req, res) => {
     console.log("Start of `getStops`");
-    const queryString = `SELECT stops.id, stops.city, trains.name
+    const queryString = `SELECT *
     FROM stops 
-    INNER JOIN trains ON trains.stopid=stops.id
+    FULL JOIN trains ON trains.stopid = stops.id
     ORDER BY stops.id ASC;`;
     try {
       const { rows } = await database.query(queryString);
