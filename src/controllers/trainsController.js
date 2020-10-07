@@ -9,12 +9,11 @@ const database = require("../dbconfig.js");
 // Fetch all trains and Left join the stops in order to use this function for other functionalities
 const trainsController = {
   getAllTrains: async (req, res, next) => {
-    console.log("Start of `getAllTrains`");
     const queryString = `
     SELECT *
     FROM stops
     FULL JOIN trains ON trains.stopid = stops.id
-    ORDER BY trains.id`;
+    ORDER BY trains.id ASC`;
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
@@ -27,8 +26,7 @@ const trainsController = {
   // Fetch all trains not in maintenance (getRunningTrains)
   getRunningTrains: async (req, res) => {
     //  const { maintenance } = req.body;
-    const queryString = `SELECT * from trains WHERE maintenance='${false}';`;
-    console.log(queryString);
+    const queryString = `SELECT * from trains WHERE maintenance='${false}' ORDER BY trains.id ASC;`;
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
@@ -56,11 +54,13 @@ const trainsController = {
     }
   },
   setStation: async (req, res, next) => {
-    console.log("Start of `setStation`");
     const { id } = req.params;
     const { stopid } = req.body;
     const queryString = `Update trains SET stopid='${stopid ? stopid : ""}' WHERE id=${id};`;
+<<<<<<< HEAD
     // console.log(queryString);
+=======
+>>>>>>> 819ed7827d91d9ef568e6a2368b9ae33b245a892
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
