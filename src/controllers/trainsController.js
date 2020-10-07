@@ -8,12 +8,11 @@ const database = require("../dbconfig.js");
 
 const trainsController = {
   getAllTrains: async (req, res, next) => {
-    console.log("Start of `getAllTrains`");
     const queryString = `
     SELECT *
     FROM stops
     FULL JOIN trains ON trains.stopid = stops.id
-    ORDER BY trains.id`;
+    ORDER BY trains.id ASC`;
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
@@ -26,8 +25,7 @@ const trainsController = {
   // Fetch all trains not in maintenance (getRunningTrains)
   getRunningTrains: async (req, res) => {
     //  const { maintenance } = req.body;
-    const queryString = `SELECT * from trains WHERE maintenance='${false}';`;
-    console.log(queryString);
+    const queryString = `SELECT * from trains WHERE maintenance='${false}' ORDER BY trains.id ASC;`;
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
@@ -55,11 +53,9 @@ const trainsController = {
     }
   },
   setStation: async (req, res, next) => {
-    console.log("Start of `setStation`");
     const { id } = req.params;
     const { stopid } = req.body;
     const queryString = `Update trains SET stopid='${stopid ? stopid : ""}' WHERE id=${id};`;
-    console.log(queryString);
     try {
       const { rows } = await database.query(queryString);
       res.json(rows);
